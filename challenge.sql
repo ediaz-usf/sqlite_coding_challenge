@@ -41,4 +41,14 @@ from employees e
 join departments d on e.department_id = d.id
 join department_avg_salaries das on d.name = das.name
 where e.salary > avg_department_salary
-order by d.name, e.salary desc
+order by d.name, e.salary desc;
+
+-- task 4
+
+select 
+    city,
+    count(*) as gold_customer_count
+from customers
+where loyalty_level = 'Gold'
+group by city
+order by gold_customer_count, city desc;
