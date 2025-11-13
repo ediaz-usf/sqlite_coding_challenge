@@ -19,6 +19,26 @@ from products p
 join order_items oi on p.id = oi.product_id
 join orders o on oi.order_id = o.id
 group by category
-order by total_revenue desc
+order by total_revenue desc;
 
+-- task 3
 
+with department_avg_salaries as (
+    SELECT 
+        d.name,
+        round(avg(e.salary), 2) avg_department_salary
+    from employees e 
+    join departments d on e.department_id = d.id
+    group by d.name
+)
+
+SELECT
+    concat(e.first_name, ' ', e.last_name) AS employee_name,
+    d.name AS department_name,
+    e.salary,
+    das.avg_department_salary
+from employees e
+join departments d on e.department_id = d.id
+join department_avg_salaries das on d.name = das.name
+where e.salary > avg_department_salary
+order by d.name, e.salary desc
