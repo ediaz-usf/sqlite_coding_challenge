@@ -1,3 +1,6 @@
+-- Using SQLite. I validate results by comparing to original database answers.
+
+
 -- task 1
 
 SELECT 
